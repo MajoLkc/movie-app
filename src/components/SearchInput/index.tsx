@@ -8,7 +8,7 @@ const SearchInput = () => {
   const onSearch = async (value: string) => {
     setIsLoading(true)
     const searchedText = value
-    const url = `http://www.omdbapi.com/?s=${searchedText}&apikey=1ab65bb4`
+    const url = `http://www.omdbapi.com/?apikey=1ab65bb4&s=${searchedText}`
     const response = await fetch(url)
     const responseJson = await response.json()
     setIsLoading(false)
