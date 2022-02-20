@@ -1,10 +1,11 @@
 import Header from "../Header"
+import Wrapper from "../Wrapper"
 
 const Page: React.FC = (props) => {
   return (
     <>
       <Header />
-      {props.children}
+      <Wrapper>{props.children}</Wrapper>
     </>
   )
 }
