@@ -1,10 +1,11 @@
+import Headline from "../../components/Headline"
 import Page from "../../components/Page"
 
 const Detail = () => {
   return (
     <>
       <Page>
-        <h1>Detail</h1>
+        <Headline text="Detail" level={1}/>
       </Page>
     </>
   )
