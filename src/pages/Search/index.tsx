@@ -1,9 +1,12 @@
+import Headline from "../../components/Headline"
 import Page from "../../components/Page"
+import SearchInput from "../../components/SearchInput"
 
 const Search = () => {
   return (
     <Page>
-      <h1>Search</h1>
+      <Headline text="Search for your film!" level={1}/>
+      <SearchInput />
     </Page>
   )
 }
