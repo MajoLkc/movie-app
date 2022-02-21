@@ -1,10 +1,13 @@
 import { Input } from "antd"
 import { useState } from "react"
+import SearchResults from "./SearchResults"
 
 const { Search } = Input
 
 const SearchInput = () => {
   const [isLoading, setIsLoading] = useState(false)
+  const [receivedData, setReceivedData] = useState([])
+
   const onSearch = async (value: string) => {
     setIsLoading(true)
     const searchedText = value
@@ -12,18 +15,22 @@ const SearchInput = () => {
     const response = await fetch(url)
     const responseJson = await response.json()
     setIsLoading(false)
-    console.log(responseJson)
+    const data = responseJson.Search
+    console.log(data)
+    setReceivedData(data)
   }
 
   return (
-    <Search
-      placeholder="Enter here film name"
-      allowClear
-      enterButton="Search"
-      size="large"
-      onSearch={onSearch}
-      loading={isLoading}
-    />
+    <>
+      <Search
+        placeholder="Enter film name here"
+        enterButton="Search"
+        size="large"
+        onSearch={onSearch}
+        loading={isLoading}
+      />
+      <SearchResults data={receivedData} />
+    </>
   )
 }
 
