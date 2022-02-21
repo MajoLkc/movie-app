@@ -10,7 +10,7 @@ const Header = () => {
       title="Movie database"
       subTitle="See all movies"
       extra={[
-        <Link route={route.FAVORITE} name="Favorites"/>,
+        <Link key="1" route={route.FAVORITE} name="Favorites"/>,
       ]}
     ></PageHeader>
   )
