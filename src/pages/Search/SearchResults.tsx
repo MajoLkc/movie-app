@@ -13,6 +13,7 @@ type Props = {
 const SearchResults = ({ data }: Props) => {
   const mappedData = data.map((movie) => (
     <MovieCard
+      id={movie.imdbID}
       title={movie.Title}
       alt={`Poster of ${movie.Title} film`}
       src={movie.Poster}
