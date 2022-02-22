@@ -1,23 +1,18 @@
 import { Input } from "antd"
-import { useState } from "react"
+import { useSelector } from "react-redux"
+import Info from "../../components/Info"
+import { useAction } from "../../hooks/useAction"
 import SearchResults from "./SearchResults"
 
 const { Search } = Input
 
-const SearchInput = () => {
-  const [isLoading, setIsLoading] = useState(false)
-  const [receivedData, setReceivedData] = useState([])
-
-  const onSearch = async (value: string) => {
-    setIsLoading(true)
-    const searchedText = value
-    const url = `http://www.omdbapi.com/?apikey=1ab65bb4&s=${searchedText}`
-    const response = await fetch(url)
-    const responseJson = await response.json()
-    setIsLoading(false)
-    const data = responseJson.Search
-    console.log(data)
-    setReceivedData(data)
+const SearchInput: React.FC = () => {
+  const { searchMovies } = useAction()
+  const { data, error, loading } = useSelector((state: any) => state.movies)
+  console.log(data)
+  console.log(error)
+  const onSearch = (value: string) => {
+    searchMovies(value)
   }
 
   return (
@@ -27,9 +22,13 @@ const SearchInput = () => {
         enterButton="Search"
         size="large"
         onSearch={onSearch}
-        loading={isLoading}
+        loading={loading}
       />
-      <SearchResults data={receivedData} />
+      {error ? (
+        <Info message="No data to display" type="error" />
+      ) : (
+        <SearchResults data={data} />
+      )}
     </>
   )
 }
