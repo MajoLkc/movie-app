@@ -18,7 +18,7 @@ const StyledCard = styled(Card)`
   }
 `
 
-interface MovieCardProps {
+interface Data {
   id: string
   alt: string
   src: string
@@ -26,14 +26,25 @@ interface MovieCardProps {
   type: string
 }
 
+interface MovieCardProps extends Data {
+  favorite: boolean
+}
+
 const style = {
   color: "red",
 }
 
-const MovieCard: React.FC<MovieCardProps> = ({ id, alt, src, title, type }) => {
-  const [isFavorite, setIsFavorite] = useState<boolean>(false)
+const MovieCard: React.FC<MovieCardProps> = ({
+  id,
+  alt,
+  src,
+  title,
+  type,
+  favorite,
+}) => {
+  const [isFavorite, setIsFavorite] = useState<boolean>(favorite)
   const toggleFavoritesHandler = () => {
-    const data: MovieCardProps = {
+    const data: Data = {
       id,
       alt,
       src,

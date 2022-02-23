@@ -19,6 +19,7 @@ const Results: React.FC<ResultsProps> = ({ data }) => {
       src={movie.Poster}
       type={movie.Type}
       key={movie.imdbID}
+      favorite={false}
     />
   ))
   return <MovieWrapper>{mappedData}</MovieWrapper>
