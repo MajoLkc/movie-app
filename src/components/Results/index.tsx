@@ -1,7 +1,7 @@
-import MovieCard from "../../components/MovieCard"
-import MovieWrapper from "../../components/MovieWrapper"
+import MovieCard from "../MovieCard"
+import MovieWrapper from "../MovieWrapper"
 
-type Props = {
+interface ResultsProps {
   data: {
     Title: string
     Poster: string
@@ -10,7 +10,7 @@ type Props = {
   }[]
 }
 
-const SearchResults = ({ data }: Props) => {
+const Results: React.FC<ResultsProps> = ({ data }) => {
   const mappedData = data.map((movie) => (
     <MovieCard
       id={movie.imdbID}
@@ -24,4 +24,4 @@ const SearchResults = ({ data }: Props) => {
   return <MovieWrapper>{mappedData}</MovieWrapper>
 }
 
-export default SearchResults
+export default Results

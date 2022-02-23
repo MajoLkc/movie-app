@@ -1,17 +1,14 @@
 import Headline from "../../components/Headline"
 import Page from "../../components/Page"
+import Content from "./Content"
 
-const Favorite = () => {
-  const favoritesData = localStorage.getItem("favorites")
-  
-  console.log(typeof(favoritesData))
-  return (
-    <>
-      <Page>
-        <Headline text="Favorite" level={1}/>
-      </Page>
-    </>
-  )
-}
+const Favorite = () => (
+  <>
+    <Page>
+      <Headline text="Favorite" level={1} />
+      <Content />
+    </Page>
+  </>
+)
 
 export default Favorite

@@ -2,15 +2,13 @@ import { Input } from "antd"
 import { useSelector } from "react-redux"
 import Info from "../../components/Info"
 import { useAction } from "../../hooks/useAction"
-import SearchResults from "./SearchResults"
+import Results from "../../components/Results"
 
 const { Search } = Input
 
 const SearchInput: React.FC = () => {
   const { searchMovies } = useAction()
   const { data, error, loading } = useSelector((state: any) => state.movies)
-  console.log(data)
-  console.log(error)
   const onSearch = (value: string) => {
     searchMovies(value)
   }
@@ -27,7 +25,7 @@ const SearchInput: React.FC = () => {
       {error ? (
         <Info message="No data to display" type="error" />
       ) : (
-        <SearchResults data={data} />
+        <Results data={data} />
       )}
     </>
   )
