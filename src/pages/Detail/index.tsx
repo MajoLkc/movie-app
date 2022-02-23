@@ -6,6 +6,7 @@ import Label from "../../components/Label"
 import Page from "../../components/Page"
 import LabelHeader from "../../components/LabelHeader"
 import configData from "../../config.json"
+import Section from "../../components/Section"
 
 interface MovieDataType {
   Actors: string
@@ -35,8 +36,6 @@ const Detail: React.FC = () => {
     loadData().catch(console.error)
   }, [])
 
-  console.log(movieData)
-
   return (
     <>
       <Page>
@@ -63,36 +62,11 @@ const Detail: React.FC = () => {
             <Image src={movieData?.Poster} />
           </Col>
         </Row>
-        <Row>
-          <LabelHeader>Plot</LabelHeader>
-        </Row>
-        <Row>
-          <Label>{movieData?.Plot}</Label>
-        </Row>
-        <Row>
-          <LabelHeader>Director</LabelHeader>
-        </Row>
-        <Row>
-          <Label>{movieData?.Director}</Label>
-        </Row>
-        <Row>
-          <LabelHeader>Writer</LabelHeader>
-        </Row>
-        <Row>
-          <Label>{movieData?.Writer}</Label>
-        </Row>
-        <Row>
-          <LabelHeader>Awards</LabelHeader>
-        </Row>
-        <Row>
-          <Label>{movieData?.Awards}</Label>
-        </Row>
-        <Row>
-          <LabelHeader>Language</LabelHeader>
-        </Row>
-        <Row>
-          <Label>{movieData?.Language}</Label>
-        </Row>
+        <Section header="Plot" text={movieData?.Plot} />
+        <Section header="Director" text={movieData?.Director} />
+        <Section header="Writer" text={movieData?.Writer} />
+        <Section header="Awards" text={movieData?.Awards} />
+        <Section header="Language" text={movieData?.Language} />
       </Page>
     </>
   )
