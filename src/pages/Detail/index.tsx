@@ -5,6 +5,7 @@ import Headline from "../../components/Headline"
 import Label from "../../components/Label"
 import Page from "../../components/Page"
 import LabelHeader from "../../components/LabelHeader"
+import configData from "../../config.json"
 
 interface MovieDataType {
   Actors: string
@@ -26,7 +27,7 @@ const Detail: React.FC = () => {
   useEffect(() => {
     const loadData = async () => {
       const filmID = filmParams.filmID
-      const url = `http://www.omdbapi.com/?apikey=1ab65bb4&i=${filmID}`
+      const url = `${configData.url}${configData.apiKey}&i=${filmID}`
       const response = await fetch(url)
       const responseJson = await response.json()
       setMovieData(responseJson)

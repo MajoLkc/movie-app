@@ -2,8 +2,7 @@ import axios from "axios"
 import { Dispatch } from "@reduxjs/toolkit"
 import { ActionType } from "../action-types"
 import { Action } from "../actions"
-
-const apiKey = "1ab65bb4"
+import configData from "../../config.json"
 
 export const searchMovies = (term: string) => {
   return async (dispatch: Dispatch<Action>) => {
@@ -12,7 +11,7 @@ export const searchMovies = (term: string) => {
     })
     try {
       const { data } = await axios.get(
-        `http://www.omdbapi.com/?apikey=${apiKey}`,
+        `${configData.url}${configData.apiKey}`,
         {
           params: {
             s: term,
