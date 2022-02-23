@@ -45,8 +45,8 @@ const MovieCard: React.FC<MovieCardProps> = ({ id, alt, src, title, type }) => {
       const newData = [data]
       localStorage.setItem(STORAGE_NAME, JSON.stringify(newData))
     } else {
-      const dataForStorage = storageData.push(JSON.stringify(data))
-      console.log(dataForStorage)
+      // const dataForStorage = storageData.push(JSON.stringify(data))
+      // console.log(dataForStorage)
       // localStorage.setItem(STORAGE_NAME, JSON.stringify(dataForStorage))
     }
   }
