@@ -12,6 +12,10 @@ const StyledCard = styled(Card)`
   width: 240px;
   display: inline-block;
   height: 450px;
+  margin: 10px;
+  img {
+    height: 300px;
+  }
 `
 
 interface MovieCardProps {
@@ -29,8 +33,6 @@ const style = {
 const MovieCard: React.FC<MovieCardProps> = ({ id, alt, src, title, type }) => {
   const [isFavorite, setIsFavorite] = useState<boolean>(false)
   const toggleFavoritesHandler = () => {
-    setIsFavorite(!isFavorite)
-    const storageData = localStorage.getItem(STORAGE_NAME)
     const data: MovieCardProps = {
       id,
       alt,
@@ -38,23 +40,24 @@ const MovieCard: React.FC<MovieCardProps> = ({ id, alt, src, title, type }) => {
       title,
       type,
     }
-
-    // localStorage.setItem(STORAGE_NAME, JSON.stringify(data))
-
-    if (storageData === null) {
-      const newData = [data]
-      localStorage.setItem(STORAGE_NAME, JSON.stringify(newData))
+    setIsFavorite(!isFavorite)
+    const storageData = localStorage.getItem(STORAGE_NAME)
+    if (!isFavorite) {
+      if (storageData === null) {
+        const newData = [data]
+        localStorage.setItem(STORAGE_NAME, JSON.stringify(newData))
+      } else {
+        const parsedData = JSON.parse(storageData)
+        const newData = [...parsedData, data]
+        localStorage.setItem(STORAGE_NAME, JSON.stringify(newData))
+      }
     } else {
-      console.log("Storage data: " + storageData)
-      const parsedData = JSON.parse(storageData)
-      console.log("Parsed data: " + parsedData)
-      // const newData = parsedData.push(data)
-      const newData = [...parsedData, data]
-      console.log("Merged data: " + newData)
-      localStorage.setItem(STORAGE_NAME, JSON.stringify(newData))
-      // const dataForStorage = storageData.push(JSON.stringify(data))
-      // console.log(dataForStorage)
-      // localStorage.setItem(STORAGE_NAME, JSON.stringify(dataForStorage))
+      if (storageData === null) return
+      const parsedStorageData = JSON.parse(storageData)
+      const filteredData = parsedStorageData.filter(
+        (item: MovieCardProps) => item.id !== data.id
+      )
+      localStorage.setItem(STORAGE_NAME, JSON.stringify(filteredData))
     }
   }
 
