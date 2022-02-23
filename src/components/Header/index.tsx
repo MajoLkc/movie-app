@@ -10,19 +10,15 @@ const StyledHeader = styled(PageHeader)`
   }
 `
 
-const Header = () => {
-  return (
-    <StyledHeader
-      ghost={false}
-      //   onBack={() => window.history.back()}
-      title="Movie database"
-      subTitle="See all movies"
-      extra={[
-        <HeaderLink key="1" route={route.SEARCH} name="Search" />,
-        <HeaderLink key="2" route={route.FAVORITE} name="Favorites" />,
-      ]}
-    />
-  )
-}
+const Header: React.FC = () => (
+  <StyledHeader
+    title="Movie database"
+    subTitle="See all movies"
+    extra={[
+      <HeaderLink key="1" route={route.SEARCH} name="Search" />,
+      <HeaderLink key="2" route={route.FAVORITE} name="Favorites" />,
+    ]}
+  />
+)
 
 export default Header
