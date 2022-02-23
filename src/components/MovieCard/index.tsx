@@ -45,6 +45,13 @@ const MovieCard: React.FC<MovieCardProps> = ({ id, alt, src, title, type }) => {
       const newData = [data]
       localStorage.setItem(STORAGE_NAME, JSON.stringify(newData))
     } else {
+      console.log("Storage data: " + storageData)
+      const parsedData = JSON.parse(storageData)
+      console.log("Parsed data: " + parsedData)
+      // const newData = parsedData.push(data)
+      const newData = [...parsedData, data]
+      console.log("Merged data: " + newData)
+      localStorage.setItem(STORAGE_NAME, JSON.stringify(newData))
       // const dataForStorage = storageData.push(JSON.stringify(data))
       // console.log(dataForStorage)
       // localStorage.setItem(STORAGE_NAME, JSON.stringify(dataForStorage))
