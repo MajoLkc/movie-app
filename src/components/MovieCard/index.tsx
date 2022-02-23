@@ -6,6 +6,8 @@ import { useState } from "react"
 
 const { Meta } = Card
 
+const STORAGE_NAME = "favorites"
+
 const StyledCard = styled(Card)`
   width: 240px;
   display: inline-block;
@@ -28,6 +30,25 @@ const MovieCard: React.FC<MovieCardProps> = ({ id, alt, src, title, type }) => {
   const [isFavorite, setIsFavorite] = useState<boolean>(false)
   const toggleFavoritesHandler = () => {
     setIsFavorite(!isFavorite)
+    const storageData = localStorage.getItem(STORAGE_NAME)
+    const data: MovieCardProps = {
+      id,
+      alt,
+      src,
+      title,
+      type,
+    }
+
+    // localStorage.setItem(STORAGE_NAME, JSON.stringify(data))
+
+    if (storageData === null) {
+      const newData = [data]
+      localStorage.setItem(STORAGE_NAME, JSON.stringify(newData))
+    } else {
+      const dataForStorage = storageData.push(JSON.stringify(data))
+      console.log(dataForStorage)
+      // localStorage.setItem(STORAGE_NAME, JSON.stringify(dataForStorage))
+    }
   }
 
   return (
